@@ -1,0 +1,24 @@
+# .gitignore for the Moxie Beauty pipeline project
+
+# --- Secrets (NEVER commit these) ---
+.env
+
+# --- Virtual environment ---
+env/
+venv/
+.venv/
+
+# --- Python cache ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# --- Pipeline output (temp audio dirs only) ---
+moxie_audio_*/
+
+# --- IDE / OS files ---
+.vscode/
+.idea/
+*.DS_Store
+Thumbs.db

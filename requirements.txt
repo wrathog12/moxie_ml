@@ -1,0 +1,39 @@
+# ============================================================
+# requirements.txt — YouTube Hair Tutorial Analysis Pipeline
+# ============================================================
+#
+# Install all dependencies inside the virtual environment:
+#   python -m venv env
+#   env\Scripts\activate        # Windows
+#   source env/bin/activate      # macOS / Linux
+#   pip install -r requirements.txt
+#
+# After installation, download the spaCy language model:
+#   python -m spacy download en_core_web_sm
+# ============================================================
+
+# --- Environment variable loading (.env file support) ---
+python-dotenv>=1.0.0
+
+# --- Audio / Video Download ---
+yt-dlp>=2024.3.10
+
+# --- Transcription (AssemblyAI SDK) ---
+assemblyai>=0.24.0
+
+# --- NLP: POS tagging, lemmatisation, tokenisation ---
+spacy>=3.7.2
+
+# --- Emotion classification (CPU-friendly distilled model) ---
+transformers>=4.38.0
+# PyTorch CPU-only build — no GPU required
+torch>=2.2.0
+
+# --- LLM Commentary Generation (Google Gemini) ---
+google-generativeai>=0.5.0
+
+# --- Data aggregation & CSV output ---
+pandas>=2.2.0
+
+# --- Utility (used internally by assemblyai / yt-dlp) ---
+requests>=2.31.0
