@@ -82,4 +82,38 @@ CSV Output  (one row per video, all features + commentary)
 
 - **Batch transcription over real-time:** AssemblyAI's async batch API was chosen for reliability and accuracy over streaming — we're not doing live analysis, so there's no trade-off.
 - **CPU-only inference:** The emotion model runs on CPU (`device=-1`) so the pipeline works without GPU infrastructure, keeping it reproducible on any machine.
-- **Separation of features from LLM:** Numerical features are deterministic and reproducible. The LLM commentary layer is additive — the CSV remains valid and usable even if the LLM call fails.
+- **Features decoupled from LLM:** Numerical features are deterministic. The LLM commentary is additive — the CSV remains valid even if the Gemini call fails.
+
+---
+
+## Setup & Running Instructions
+
+The pipeline was built to be easily runnable. Please follow these steps to execute `main.py` locally:
+
+**1. Create & Activate a Virtual Environment**
+```bash
+python -m venv env
+# Windows
+env\Scripts\activate
+# macOS/Linux
+source env/bin/activate
+```
+
+**2. Install Dependencies**
+```bash
+pip install -r requirements.txt
+python -m spacy download en_core_web_sm
+```
+
+**3. Configure API Keys**
+Rename the `.env.example` file to `.env` in the root directory and add your keys:
+```env
+ASSEMBLYAI_API_KEY=your_key_here  # Free tier at assemblyai.com
+GOOGLE_API_KEY=your_key_here      # Free tier at aistudio.google.com
+```
+
+**4. Run the Pipeline**
+```bash
+python main.py
+```
+*Note: The script will download audio from YouTube, run the `j-hartmann/emotion-english-distilroberta-base` model locally (CPU-only, no GPU required), and output `output_features.csv` with 3 test videos.*
